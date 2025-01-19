@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="../static/user_list.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;900&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - material icon link
+  -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" /> 
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+    
+</head>
+
+<body>
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <h1>
+        <a href="#" class="logo">Bitirme Projesi</a>
+      </h1>
+
+      <button class="menu-toggle-btn icon-box" data-menu-toggle-btn aria-label="Toggle Menu">
+        <span class="material-symbols-rounded  icon">menü</span>
+      </button>
+
+      <nav class="navbar">
+        <div class="container">
+
+          <ul class="navbar-list">
+
+            <li>
+              <a href="{{ url_for('home', name=name) }}" class="navbar-link icon-box">
+                <span class="material-symbols-rounded  icon">home</span>
+
+                <span>Anasayfa</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('add_user', name=name) }}" class="navbar-link icon-box">
+                <span class="material-symbols-rounded  icon">group_add</span>
+
+                <span>Yeni Kullanıcı Ekle</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('user_list', name=name) }}" class="navbar-link active icon-box">
+                <span class="material-symbols-rounded  icon">contacts</span>
+                <span>Kullanıcı Listesi</span>
+              </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('index') }}" class="navbar-link icon-box">  <!-- 'index' yönlendirmesini kullanın -->
+                    <span class="material-symbols-rounded icon">logout</span>
+                    <span>Çıkış Yap</span>
+                </a>
+            </li>
+          </ul>
+
+          <ul class="user-action-list">
+            <li>
+              <a href="#" class="header-profile">
+                <div>
+                  <p class="profile-title">{{ name }}</p>
+                  <p class="profile-subtitle">Admin</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <article class="container article">
+
+  <h1 class="mb-4">Kullanıcı Listesi</h1>
+
+  <div class="container">
+      <div class="row">
+          {% for user in users %}
+          <div class="col-12 col-md-4 col-lg-3 mb-4">
+              <div class="card">
+                  <img src="{{ url_for('serve_face', filename=user['face']) }}" alt="Fotoğraf" class="card-img-top" style="height: 200px; object-fit: cover;">
+                  <div class="card-body">
+                      <h5 class="card-title">{{ user['name'] }}</h5>
+                      <p class="card-text">{{ user['email'] }}</p>
+                      <p class="card-text">{{ user['password'] }}</p>
+                      <form action="{{ url_for('delete_user', name=user['name']) }}" method="POST" onsubmit="return confirmDelete()">
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+</article>
+  <!-- 
+    - #FOOTER
+  -->
+  <footer class="footer">
+    <div class="container">
+
+      <ul class="footer-list">
+        <li class="footer-item">
+          <a href="#" class="footer-link">Zümra Uygun - Müzeyyen Beyza Akıllı</a>
+        </li>
+        <li class="footer-item">
+          <a href="#" class="footer-link">2011307080 - 211307058</a>
+        </li>
+      </ul>
+
+      <p class="copyright">
+        Akıllı Kilit Sistemi
+      </p>
+
+    </div>
+  </footer>
+  <!-- 
+    - custom js link
+  -->
+  <script src="../static/home.js"></script>
+  <script src="../static/user_list.js"></script>
+
+</body>
+
+</html>
+
+
+
+    
+

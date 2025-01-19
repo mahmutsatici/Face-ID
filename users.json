@@ -1,0 +1,14 @@
+[
+    {
+        "face": "m\u00fczo.jpg",
+        "name": "m\u00fczo",
+        "email": "muzo@example.com",
+        "password": "123789"
+    },
+    {
+        "face": "zumra.jpg",
+        "name": "zumra",
+        "email": "zumra@example.com",
+        "password": "123789"
+    }
+]

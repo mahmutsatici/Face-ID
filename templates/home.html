@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="../static/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;900&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - material icon link
+  -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+
+
+</head>
+
+<body>
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <h1>
+        <a href="#" class="logo">Bitirme Projesi</a>
+      </h1>
+
+      <button class="menu-toggle-btn icon-box" data-menu-toggle-btn aria-label="Toggle Menu">
+        <span class="material-symbols-rounded  icon">menü</span>
+      </button>
+
+      <nav class="navbar">
+        <div class="container">
+
+          <ul class="navbar-list">
+
+            <li>
+              <a href="{{ url_for('home', name=name) }}" class="navbar-link active icon-box">
+                <span class="material-symbols-rounded  icon">home</span>
+
+                <span>Anasayfa</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('add_user', name=name) }}" class="navbar-link icon-box">
+                <span class="material-symbols-rounded  icon">group_add</span>
+
+                <span>Yeni Kullanıcı Ekle</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('user_list', name=name) }}" class="navbar-link icon-box">
+                <span class="material-symbols-rounded  icon">contacts</span>
+                <span>Kullanıcı Listesi</span>
+              </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('index') }}" class="navbar-link icon-box">  <!-- 'index' yönlendirmesini kullanın -->
+                    <span class="material-symbols-rounded icon">logout</span>
+                    <span>Çıkış Yap</span>
+                </a>
+            </li>
+          </ul>
+
+          <ul class="user-action-list">
+            <li>
+              <a href="#" class="header-profile">
+                <div>
+                  <p class="profile-title">{{ name }}</p>
+                  <p class="profile-subtitle">Admin</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+
+
+
+  <xmain>
+    <article class="container article">
+
+      <h2 class="h2 article-title">Merhaba {{ name }}</h2>
+
+      
+
+      <!-- 
+        - #HOME
+      -->
+
+      <section class="home">
+
+        <div class="card profile-card">
+
+          <div class="profile-card-wrapper">
+
+           
+            <div>
+              <p class="card-title">Yönetici</p>
+
+              <p class="card-subtitle"></p>
+            </div>
+
+          </div>
+
+          <ul class="contact-list">
+
+            <li>
+              <a href="mailto:xyz@mail.com" class="contact-link icon-box">
+                <span class="material-symbols-rounded  icon">mail</span>
+
+                <p class="text">şirket@gmail.com</p>
+              </a>
+            </li>
+
+            <li>
+              <a href="tel:00123456789" class="contact-link icon-box">
+                <span class="material-symbols-rounded  icon">call</span>
+
+                <p class="text">+262 242 4134</p>
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="divider card-divider"></div>
+
+          <ul class="progress-list">
+
+            <li class="progress-item">
+
+              <div class="progress-label">
+                <p class="progress-title">Şirket Verimliliği</p>
+
+                <data class="progress-data" value="85">85%</data>
+              </div>
+
+              <div class="progress-bar">
+                <div class="progress" style="--width: 85%; --bg: var(--blue-ryb);"></div>
+              </div>
+
+            </li>
+
+            <li class="progress-item">
+
+              <div class="progress-label">
+                <p class="progress-title">Çalışan Puanı</p>
+
+                <data class="progress-data" value="7.5">7.5</data>
+              </div>
+
+              <div class="progress-bar">
+                <div class="progress" style="--width: 75%; --bg: var(--coral);"></div>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div class="card-wrapper">
+          <div class="card task-card">
+            <div class="card-icon icon-box blue">
+              <span class="material-symbols-rounded  icon">drive_file_rename_outline</span>
+            </div>
+
+            <div>
+              <data class="card-data" value="21">21</data>
+
+              <p class="card-text">Görevler</p>
+            </div>
+
+          </div>
+
+          <div class="card task-card">
+
+            <div class="card-icon icon-box green">
+              <span class="material-symbols-rounded  icon">task_alt</span>
+            </div>
+
+            <div>
+              <data class="card-data" value="21">12</data>
+
+              <p class="card-text">Tamamlanan Görevler</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="card revenue-card">
+
+          <p class="card-title">Alım-Satım</p>
+
+          <data class="card-price" value="2100">212</data>
+
+          <p class="card-text">Geçen Haftadan Beri</p>
+
+          <div class="divider card-divider"></div>
+
+          <ul class="revenue-list">
+
+            <li class="revenue-item icon-box">
+
+              <span class="material-symbols-rounded  icon  green">trending_up</span>
+
+              <div>
+                <data class="revenue-item-data" value="15">15%</data>
+
+                <p class="revenue-item-text">Geçen Hafta</p>
+              </div>
+
+            </li>
+
+            <li class="revenue-item icon-box">
+
+              <span class="material-symbols-rounded  icon  red">trending_down</span>
+
+              <div>
+                <data class="revenue-item-data" value="10">10%</data>
+
+                <p class="revenue-item-text">Geçen Ay</p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </section>
+      <!-- 
+        - #PROJECTS
+      -->
+
+      <section class="projects">
+
+        <div class="section-title-wrapper">
+          <h2 class="section-title">Ölçüm Grafikleri</h2>
+          <a href="chart.html">
+          <button class="btn btn-link icon-box">
+            <span>Hepsini Gör</span>
+
+            <span class="material-symbols-rounded  icon" aria-hidden="true">arrow_forward</span>
+          </button></a>
+        </div>
+
+        <ul class="project-list">
+
+          <li class="project-item">
+            
+            <div class="card project-card">
+              <time class="card-date" datetime="2022-04-09">Apr 09, 2022</time>
+
+              
+              <canvas id="SoilChart" style="width:100%;max-width:700px"></canvas>
+            </div>
+          </li>
+
+          <li class="project-item">
+            
+            <div class="card project-card">
+              <time class="card-date" datetime="2022-04-09">Apr 09, 2022</time>
+
+              
+              
+              <canvas id="AirChart" style="width:100%;max-width:700px"></canvas>
+            </div>
+          </li>
+          
+          <li class="project-item">
+            
+            <div class="card project-card">
+              <time class="card-date" datetime="2022-04-09">Apr 09, 2022</time>
+
+              
+              <canvas id="LightChart" style="width:100%;max-width:700px"></canvas>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 
+        - #TASKS
+      -->
+
+      <section class="tasks">
+        <div class="section-title-wrapper">
+          <h2 class="section-title">Tasks</h2>
+          <button class="btn btn-link icon-box">
+            <span>Hepsini Gör</span>
+            <span class="material-symbols-rounded  icon" aria-hidden="true">arrow_forward</span>
+          </button>
+        </div>
+
+        <ul class="tasks-list">
+          <!-- Dinamik olarak bildirimler buraya eklenecek -->
+        </ul>
+        
+      </section>
+    </article>
+  </main>
+  <!-- 
+    - #FOOTER
+  -->
+  <footer class="footer">
+    <div class="container">
+
+      <ul class="footer-list">
+        <li class="footer-item">
+          <a href="#" class="footer-link">Zümra Uygun - Müzeyyen Beyza Akıllı</a>
+        </li>
+        <li class="footer-item">
+          <a href="#" class="footer-link">2011307080 - 211307058</a>
+        </li>
+      </ul>
+
+      <p class="copyright">
+        Akıllı Kilit Sistemi
+      </p>
+
+    </div>
+  </footer>
+  <!-- 
+    - custom js link
+  -->
+  <script src="../static/home.js"></script>
+  
+
+</body>
+
+</html>
